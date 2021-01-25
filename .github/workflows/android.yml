@@ -18,10 +18,12 @@ jobs:
       uses: nttld/setup-ndk@v1.0.2
       with:
         ndk-version: r21d
-    - name: Build
-      run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk
-    - name: Upload
-      uses: actions/upload-artifact@v2
-      with:
-        name: libs
-        path: libs/
+    - name: Debug
+      run: which ndk-build
+#    - name: Build
+#      run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk
+#    - name: Upload
+#      uses: actions/upload-artifact@v2
+#      with:
+#        name: libs
+#        path: libs/
