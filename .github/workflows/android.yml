@@ -14,16 +14,20 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: /opt/hostedtoolcache/ndk/r21d/x64
+        key: ${{ runner.os }}-android-ndk-r21d
     - name: Setup Android NDK
+      if: steps.cache.outputs.cache-hit != 'true'
       uses: nttld/setup-ndk@v1.0.2
       with:
         ndk-version: r21d
-    - name: Debug
-      run: which ndk-build
-#    - name: Build
-#      run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk
-#    - name: Upload
-#      uses: actions/upload-artifact@v2
-#      with:
-#        name: libs
-#        path: libs/
+    - name: Build
+      run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: libs
+        path: libs/
