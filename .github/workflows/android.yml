@@ -25,6 +25,7 @@ jobs:
       with:
         ndk-version: r21d
     - name: Build
+      env: PATH=$PATH:/opt/hostedtoolcache/ndk/r21d/x64
       run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk
     - name: Upload
       uses: actions/upload-artifact@v2
