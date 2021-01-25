@@ -20,3 +20,5 @@ jobs:
         ndk-version: r21d
     - name: Build
       run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk
+    - name: Debug
+      run: find . -type f -name 'libGL*'
